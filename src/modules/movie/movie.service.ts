@@ -1,10 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Injectable()
 export class MovieService {
-  create(createMovieDto: CreateMovieDto) {
+  create(_createMovieDto: CreateMovieDto) {
     return 'This action adds a new movie';
   }
 
@@ -16,7 +17,7 @@ export class MovieService {
     return `This action returns a #${id} movie`;
   }
 
-  update(id: number, updateMovieDto: UpdateMovieDto) {
+  update(id: number, _updateMovieDto: UpdateMovieDto) {
     return `This action updates a #${id} movie`;
   }
 
