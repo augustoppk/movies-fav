@@ -1,20 +1,15 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable prettier/prettier */
-import { Injectable } from "@nestjs/common";
-import { PrismaService } from "src/prisma.service";
-import { CreateMovieDto } from "../dto/create-movie.dto";
+import { Injectable } from '@nestjs/common';
+import { PrismaService } from '../../../shared/databases/prisma.database'; // ✅ Caminho correto
+import { CreateMovieDto } from '../dto/create-movie.dto';
 
 @Injectable()
 export class CreateMovieRepository {
-    constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
-    async create(data: CreateMovieDto) {
-        const movie = await this.prisma.movie.create({
-            data,
-        });
-        return movie;
-    }
+  async create(data: CreateMovieDto) {
+    const movie = await this.prisma.movie.create({
+      data,
+    });
+    return movie;
+  }
 }

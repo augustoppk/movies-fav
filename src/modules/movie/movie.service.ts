@@ -1,27 +1,41 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from '@nestjs/common';
 import { CreateMovieDto } from './dto/create-movie.dto';
 import { UpdateMovieDto } from './dto/update-movie.dto';
+import {
+  CreateMovieUseCase,
+  DeleteMovieUseCase,
+  FindOneMovieUseCase,
+  ListMovieUseCase,
+  UpdateMovieUseCase,
+} from './use-cases';
 
 @Injectable()
 export class MovieService {
-  create(_createMovieDto: CreateMovieDto) {
-    return 'This action adds a new movie';
+  constructor(
+    private readonly createMovieUseCase: CreateMovieUseCase,
+    private readonly listMovieUseCase: ListMovieUseCase,
+    private readonly findOneMovieUseCase: FindOneMovieUseCase,
+    private readonly deleteMovieUseCase: DeleteMovieUseCase,
+    private readonly updateMovieUseCase: UpdateMovieUseCase,
+  ) {}
+
+  create(data: CreateMovieDto) {
+    return this.createMovieUseCase.execute(data);
   }
 
   findAll() {
-    return `This action returns all movie`;
+    return this.listMovieUseCase.listall();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} movie`;
+  findOne(id: string) {
+    return this.findOneMovieUseCase.findone(id);
   }
 
-  update(id: number, _updateMovieDto: UpdateMovieDto) {
-    return `This action updates a #${id} movie`;
+  update(id: string, data: UpdateMovieDto) {
+    return this.updateMovieUseCase.execute(id, data);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} movie`;
+  remove(id: string) {
+    return this.deleteMovieUseCase.delete(id);
   }
 }
