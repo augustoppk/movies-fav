@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable prettier/prettier */
 import { Injectable } from "@nestjs/common";
 import { CreateGenreDto } from "../dto/create-genre.dto";
